@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int monsMaxDPT = 25;
     int turnNumber= 1;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle s) {
         super.onCreate(s);
@@ -34,9 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         txtHeroHP.setText(String.valueOf(this.heroHP));
         txtMonsterHP.setText(String.valueOf(this.monsterHP));
-        txtHeroDPT.setText(String.valueOf(heroMinDPT)+ " ~ "+ String.valueOf(heroMaxDPT));
-        txtMonsterDPT.setText(String.valueOf(monsMinDPT)+ " ~ "+ String.valueOf(monsMaxDPT));
-
+        txtHeroDPT.setText((heroMinDPT)+ " ~ "+ (heroMaxDPT));
+        txtMonsterDPT.setText((monsMinDPT)+ " ~ "+ (monsMaxDPT));
         nextTurn.setOnClickListener(this);
 
     }
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnNextTurn:
 
 
-                if((turnNumber%2)==1){
+                if(turnNumber%2==1){
                     monsterHP = monsterHP - heroDPT;
                     txtMsg.setText("The hero dealt " +heroDPT+ " damage to the enemy");
                     turnNumber++;
@@ -74,19 +74,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     txtMsg.setText("The monster dealt " +monsDPT+ " damage to the hero");
                     turnNumber++;
                     btnNext.setText("Hero's Turn");
-                }
 
+                }
                 txtHeroHP.setText(String.valueOf(heroHP));
                 txtMonsterHP.setText(String.valueOf(monsterHP));
-                txtHeroDPT.setText(String.valueOf(heroMinDPT)+ " ~ "+ String.valueOf(heroMaxDPT));
-                txtMonsterDPT.setText(String.valueOf(monsMinDPT)+ " ~ "+ String.valueOf(monsMaxDPT));
+                txtHeroDPT.setText((heroMinDPT)+ " ~ "+ (heroMaxDPT));
+                txtMonsterDPT.setText((monsMinDPT)+ " ~ "+ (monsMaxDPT));
 
                 if (heroHP<=0){
                     txtMsg.setText("The hero was defeated!");
-                    txtHeroHP.setText(String.valueOf(heroHP));
-                    txtMonsterHP.setText(String.valueOf(monsterHP));
-                    txtHeroDPT.setText(String.valueOf(heroMinDPT)+ " ~ "+ String.valueOf(heroMaxDPT));
-                    txtMonsterDPT.setText(String.valueOf(monsMinDPT)+ " ~ "+ String.valueOf(monsMaxDPT));
+                    txtHeroHP.setText("");
+                    txtMonsterHP.setText("");
+                    txtHeroDPT.setText("");
+                    txtMonsterDPT.setText("");
+                    btnNext.setText("Try again next time");
                 }
                 else if (monsterHP<=0){
                     txtMsg.setText("The hero was victorious!");
@@ -94,7 +95,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     txtMonsterHP.setText("");
                     txtHeroDPT.setText("");
                     txtMonsterDPT.setText("");
+                    btnNext.setText("Congratulations");
                 }
+
 
                 break;
 
