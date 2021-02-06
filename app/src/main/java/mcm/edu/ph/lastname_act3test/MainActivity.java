@@ -12,14 +12,14 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    int heroHP = 615;
+    int heroHP = 1480;
     int monsterHP = 8000;
     int heroMinDPT = 102;
     int heroMaxDPT = 104;
     int monsMinDPT = 75;
     int monsMaxDPT = 80;
     int turnNumber= 1;
-    int passiveSkill=1;
+    int passiveSkill=0;
     int activeSkillBaseDamage = 100;
     int activeSkillCooldown = 0;
     int damageOverTime = 140;
@@ -77,8 +77,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                 if(turnNumber%2==1 && (damageOverTimeTurns > 0 || damageOverTimeTurns == 0)){ //turn counter condition to simulate alternating hero-enemy attack
-                    monsterHP = monsterHP - heroDPT;
-                    txtMsg.setText("The hero dealt " +heroDPT+ " damage to the enemy");
+
+                    if(passiveSkill == 0){
+                        if(random.nextInt(100)<=20){
+                            monsterHP = monsterHP - ((int)(heroDPT*2.6));
+                            heroHP = heroHP + (int)((heroDPT*2.6)*0.34);
+                            txtMsg.setText("The hero dealt " +((int)(heroDPT*2.6))+ " critical damage to the enemy due to Mortal Strike.\n"+
+                                    "The hero healed "+(int)((heroDPT*2.6)*0.34)+ " health due to passive skill, Vampiric Spirit");
+                            passiveSkill = 4;
+                        }
+                        else{
+                            monsterHP = monsterHP - heroDPT;
+                            heroHP = heroHP + (int)(heroDPT*0.34);
+                            txtMsg.setText("The hero dealt " +heroDPT+ " damage to the enemy.\n"+
+                                    "The hero healed "+(int)(heroDPT*0.34)+ " health due to passive skill, Vampiric Spirit");
+                        }
+                    }
+                    else{
+                        monsterHP = monsterHP - heroDPT;
+                        heroHP = heroHP + (int)(heroDPT*0.34);
+                        txtMsg.setText("The hero dealt " +heroDPT+ " damage to the enemy. \n"+
+                                "The hero healed "+(int)(heroDPT*0.34)+ " health due to passive skill, Vampiric Spirit");
+                        passiveSkill--;
+                    }
                     turnNumber++;
                     btnNext.setText("Monster's Turn");
                     stun.setEnabled(false);
@@ -103,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     turnNumber++;
                     btnNext.setText("Attack");
                     stun.setEnabled(true);
-                    if(activeSkillCooldown !=0){
+                    if(activeSkillCooldown !=0) {
                         activeSkillCooldown--;
                         stun.setEnabled(false);
                     }
