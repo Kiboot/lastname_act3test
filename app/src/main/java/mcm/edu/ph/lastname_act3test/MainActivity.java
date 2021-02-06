@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 else if(turnNumber%2!=1 && damageOverTimeTurns == 0){
                     heroHP = heroHP - monsDPT;
-                    txtMsg.setText("The monster dealt " +heroDPT+ " damage to the hero");
+                    txtMsg.setText("The monster dealt " +monsDPT+ " damage to the hero");
                     turnNumber++;
                     btnNext.setText("Attack");
                     stun.setEnabled(true);
