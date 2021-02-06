@@ -6,6 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/btnActiveStun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Wraithfire Blast"
+        app:layout_constraintEnd_toEndOf="@+id/btnPassive"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/btnPassive"
+        app:layout_constraintTop_toBottomOf="@+id/btnPassive" />
+
+    <Button
+        android:id="@+id/btnPassive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Mortal Strike"
+        app:layout_constraintEnd_toEndOf="@+id/btnAtk"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="@+id/btnAtk"
+        app:layout_constraintTop_toBottomOf="@+id/btnAtk" />
+
     <TextView
         android:id="@+id/txtMonsterDPT"
         android:layout_width="wrap_content"
@@ -79,14 +101,14 @@
         app:layout_constraintTop_toTopOf="@+id/textView5" />
 
     <Button
-        android:id="@+id/btnNextTurn"
+        android:id="@+id/btnAtk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:text="Fight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="60dp"
+        android:text="Attack"
+        app:layout_constraintEnd_toEndOf="@+id/txtMsg"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/txtMsg"
         app:layout_constraintTop_toBottomOf="@+id/txtMsg" />
 
     <TextView
